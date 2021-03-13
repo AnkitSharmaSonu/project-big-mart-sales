@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <title>Enter The Details</title>
+    <style>
+        body{
+background: url("static/pic.jpg") no-repeat;
+background-size: 100%;
+}
+section{
+padding-left: 10%;
+}
+label{
+color: whitesmoke;
+font-style: italic;
+padding-top: 10%;
+}
+input{
+border-radius: 4px;
+height: 28px;
+}
+input[type=submit]{
+border : none;
+border-radius: 7px;
+width: 150px;
+font-style: italic;
+}
+div{
+    margin-top: 10%;
+    margin-left: 30%;
+    width: 40%;
+}
+
+</style>   
+    </head>
+    <body>
+        <div>
+</style>   
+    </head>
+    <body>
+        <div>
+        <form method="POST" action="/keygen/">
+            <label>Private Key Alice</label><br>
+            <input type="text" name="key1"><br>
+            <label>Private Key BOB</label><br>
+            <input type="text" name="key2"><br>
+            <input type="submit" value="Submit">
+        </div>
+        </form>
+    </body>
+</html>
+</style>   
+    </head>
+    <body>
+        <div>
+        <form method="POST" action="/keygen/">
+            <lab
+from flask import Flask, render_template, request
+import pickle
+
+app = Flask(__name__)
+@app.route("/")
+def index():
+    return render_template('dh.html')
+
+@app.route("/keygen/", methods=['POST', 'GET'])
+def keygen():
+    p, g = 23, 9
+    if request.method == 'POST':
+        try:
+            pk1 = int(request.form.get('key1'))
+            pk2 = int(request.form.get('key2'))
+            k1 = (g**pk1) % p
+            k2 = (g**pk2) % p
+
+            ka = (k2**pk1) % p
+            kb = (k1**pk2) % p
+ 
